@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap');
+
+// Reset
+body {
+  margin: 0rem;
+  padding: 0rem;
+  box-sizing: border-box;
+  font-family: 'Manrope', sans-serif;
+}
+
+// Colors
+$dark-grayish: hsl(217, 19%, 35%);
+$dark-blue: hsl(214, 17%, 51%);
+$grayish-blue: hsl(212, 23%, 69%);
+$light-grayish-blue: hsl(210, 46%, 95%);
+
+// Mixins
+
+@mixin structure($width, $height, $display, $bg) {
+  width: $width;
+  height: $height;
+  display: $display;
+  background-color: $bg;
+}
+
+@mixin alignament($justify, $align, $gap) {
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin texts($fs, $color, $mar, $pad) {
+  font-size: $fs;
+  color: $color;
+  margin: $mar;
+  padding: $pad;
+}
+
+// Styles
+.container {
+  @include structure(100%, 100vh, flex, $light-grayish-blue);
+  min-height: 100vh;
+  @include alignament(center, center, 0rem);
+
+  .article {
+    @include structure(54.0625rem, 18.75rem, flex, hsl(0, 0%, 100%));
+    border-radius: .625rem;
+
+    .article__image {
+      height: 100%;
+
+      img {
+        height: 100%;
+        border-top-left-radius: .625rem;
+        border-bottom-left-radius: .625rem;
+      }
+    }
+
+    .article__content {
+      padding: 1.5rem 2rem;
+
+      .content--title {
+        @include texts(1.5rem, $dark-grayish, 0rem 0rem .75rem, 0rem);
+      }
+
+      .content--text {
+        @include texts(.9375rem, $grayish-blue, .9375rem 0rem, 0rem 1rem 0rem 0rem);
+      }
+
+      .content__share {
+        @include structure(100%, 3.125rem, flex, transparent);
+        @include alignament(space-between, center, 0rem);
+        margin-top: 1rem;
+        position: relative;
+
+        .share--person {
+          display: flex;
+          @include alignament(space-around, center, 1.25rem);
+
+          img {
+            border-radius: 50%;
+          }
+
+          .data {
+            h3 {
+              @include texts(1rem, $dark-grayish, 0rem, 0rem);
+            }
+
+            span {
+              @include texts(.875rem, $grayish-blue, 0rem, 0rem);
+            }
+          }
+        }
+
+        .share--cta {
+          margin-right: .875rem;
+          padding: .5rem .625rem;
+          background-color: $light-grayish-blue;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+
+        .popup {
+          @include structure(14.5rem, 3.25rem, flex, $dark-grayish);
+          position: absolute;
+          top: -4.5rem;
+          right: -5.175rem;
+          @include alignament(center, center, 1rem);
+          border-radius: .625rem;
+          color: $light-grayish-blue;
+          transition: opacity .6s;
+          opacity: 0;
+
+          span {
+            @include texts(.8125rem, $grayish-blue, 0rem, 0rem);
+            letter-spacing: .3125rem;
+            text-transform: uppercase;
+            font-weight: 500;
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -1.25rem;
+            border: .625rem solid transparent;
+            border-top: .625rem solid $dark-grayish;
+
+          }
+
+          a {
+            display: flex;
+            align-items: center;
+          }
+        }
+
+        .active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .container {
+    .article {
+      height: 32.5rem;
+      width: 21.875rem;
+      flex-direction: column;
+
+      .article__image {
+        height: 45%;
+
+        img {
+          width: 100%;
+          border-bottom-left-radius: 0rem;
+          border-top-right-radius: .625rem;
+        }
+      }
+
+      .article__content {
+        padding: 0rem 0rem;
+
+        .content--title {
+          @include texts(1.125rem, $dark-grayish, 1.5rem 0rem .75rem, 0rem 2rem);
+        }
+
+        .content--text {
+          @include texts(.9063rem, $grayish-blue, .9375rem 0rem, 0rem 2rem);
+        }
+
+        .content__share {
+          width: calc(100% - 3.75rem);
+          margin-top: 0rem;
+          padding: 0rem 1.875rem 1rem;
+
+          .share--person {
+            img {
+              width: 2.8125rem;
+            }
+
+            .data {
+              h3 {
+                font-size: .9375rem;
+              }
+            }
+          }
+
+          .share--cta {
+            padding: .375rem .5rem;
+            z-index: 1;
+          }
+
+          .popup {
+            width: calc(100% - 3.75rem);
+            height: 4.0625rem;
+            padding: 0rem 1.875rem;
+            top: 0px;
+            right: 0px;
+            justify-content: flex-start;
+            border-top-right-radius: 0rem;
+            border-top-left-radius: 0rem;
+
+            &::after {
+              display: none;
+            }
+          }
+
+          .active+#cta {
+            animation-name: move;
+            animation-duration: .6s;
+            animation-fill-mode: forwards;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes move {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    margin-top: 1rem;
+    opacity: 1;
+  }
+}
