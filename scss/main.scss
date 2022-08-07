@@ -78,6 +78,7 @@ $light-grayish-blue: hsl(210, 46%, 95%);
           @include alignament(space-around, center, 1.25rem);
 
           img {
+            height: 3.125rem;
             border-radius: 50%;
           }
 

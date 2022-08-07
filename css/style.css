@@ -54,6 +54,7 @@ body {
           align-items: center;
           gap: 1.25rem; }
           .container .article .article__content .content__share .share--person img {
+            height: 3.125rem;
             border-radius: 50%; }
           .container .article .article__content .content__share .share--person .data h3 {
             font-size: 1rem;
