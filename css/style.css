@@ -56,7 +56,7 @@ body {
           .container .article .article__content .content__share .share--person img {
             height: 3.125rem;
             border-radius: 50%; }
-          .container .article .article__content .content__share .share--person .data h3 {
+          .container .article .article__content .content__share .share--person .data h2 {
             font-size: 1rem;
             color: #48556a;
             margin: 0rem;
@@ -136,7 +136,7 @@ body {
         padding: 0rem 1.875rem 1rem; }
         .container .article .article__content .content__share .share--person img {
           width: 2.8125rem; }
-        .container .article .article__content .content__share .share--person .data h3 {
+        .container .article .article__content .content__share .share--person .data h2 {
           font-size: .9375rem; }
         .container .article .article__content .content__share .share--cta {
           padding: .375rem .5rem;
